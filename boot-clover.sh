@@ -20,6 +20,7 @@ qemu-system-x86_64 -enable-kvm -m 32768 -cpu Penryn,kvm=on,vendor=GenuineIntel,+
 	  -smbios type=2 \
 	  -device ich9-intel-hda -device hda-duplex \
 	  -device ide-drive,bus=ide.2,drive=MacHDD \
-	  -drive id=MacHDD,if=none,file=./mac_hdd.img \
-	  -netdev tap,id=net0,ifname=tap0,script=no,downscript=no -device e1000-82545em,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
+	  -drive id=MacHDD,if=none,file=./mac_hdd.img,format=qcow2 \
+	  -netdev bridge,id=net0,br=bridge0,helper=/usr/lib/qemu/qemu-bridge-helper -device e1000-82545em,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
+	  -vga std \
 	  -monitor stdio
